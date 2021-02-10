@@ -1,7 +1,12 @@
 import React from "react";
+import { Layout, Main } from "../../components";
 
 export const Ejemplo = () => {
   return (
-    <h1>Bienvenidos</h1>
+    <Layout >
+      <Main title="Bienvenidos" showAddButton>
+
+      </Main>
+    </Layout>
   );
 };

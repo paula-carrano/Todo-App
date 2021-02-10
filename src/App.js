@@ -1,20 +1,15 @@
-import "./App.css";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Ejemplo, Tasks } from "./Screens";
-import { Layout, Main } from "./components";
+import "./App.css";
 
 const App = () => {
   return (
     <Router>
-      <Layout>
-        <Main>
-          <Switch>
-            <Route path="/tasks" component={Tasks} />
-            <Route path="/" component={Ejemplo} />
-          </Switch>
-        </Main>
-      </Layout>
+      <Switch>
+
+        <Route path='/tasks' component={Tasks} />
+        <Route path='/' component={Ejemplo} />
+      </Switch>
     </Router>
   );
 };

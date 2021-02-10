@@ -1,13 +1,16 @@
 import React from 'react';
 import "./style.css"
 
-const Header = ({ handleClick, title }) => {
+const Header = ({ title, showAddButton }) => {
     return (
-        <header className="main-header">
-            <h1>{title} </h1>
-            <button type="button" className="btn btn-info" onClick={handleClick}>Agregar</button>
+        <header className='main-header'>
+            <h1>{title}</h1>
+            {!showAddButton && <button className='btn btn1'>Agregar</button>}
         </header>
-    );
+    )
 }
 
-export { Header };
+Header.defaultProps = {
+    showAddButton: false
+}
+export { Header }

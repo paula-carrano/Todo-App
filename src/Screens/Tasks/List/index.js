@@ -1,15 +1,14 @@
 import React from 'react';
-import { Header } from '../../../components/Main/components'
+import { Layout, Main } from '../../../components'
 
 const List = () => {
-    const onclick = () => {
-        return console.log("pepe");
-    }
     return (
-        <>
-            <Header handleClick={onclick} title="Agregar tarea" />
-        </>
-    );
+        <Layout>
+            <Main title="Tareas">
+
+            </Main>
+        </Layout>
+    )
 }
 
 export { List };
