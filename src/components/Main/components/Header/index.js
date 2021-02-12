@@ -1,11 +1,13 @@
 import React from 'react';
 import "./style.css"
 
-const Header = ({ title, showAddButton }) => {
+const Header = ({ title, showAddButton, handleClick }) => {
+
+
     return (
         <header className='main-header'>
             <h1>{title}</h1>
-            {!showAddButton && <button className='btn btn1'>Agregar</button>}
+            {!showAddButton && <button className='btn btn-info btn1' onClick={handleClick}>Agregar tarea</button>}
         </header>
     )
 }
