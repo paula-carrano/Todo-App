@@ -7,6 +7,7 @@ import { UserApi } from './api'
 
 const ListUser = () => {
 
+    //REDIRECCIONO EL BTN
     const history = useHistory();
 
     const redirectAddUserForm = () => {
@@ -15,11 +16,11 @@ const ListUser = () => {
 
     const [dataUser, setdataUser] = useState([])
 
+    // OBTENGO DATOS
     const setUsers = () => {
         UserApi.get()
             .then((response => {
                 setdataUser(response);
-                console.log(response)
             }))
     }
 
@@ -27,9 +28,10 @@ const ListUser = () => {
         setUsers()
     }, []);
 
+    //BTN DELETE
     const deleteUser = (id) => {
         api.delete(`/users/${id}.json`)
-
+            .then(setUsers())
     }
 
     return (
@@ -37,7 +39,7 @@ const ListUser = () => {
             <Main title="Usuarios" handleClick={redirectAddUserForm}>
                 <div className="container">
                     <div className="row">
-                        <TableUser dataUser={dataUser} handleClick={deleteUser} />
+                        <TableUser dataUser={dataUser} handleClickDelete={deleteUser} />
                     </div>
                 </div>
             </Main>

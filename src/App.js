@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Ejemplo, Tasks, Users } from "./Screens";
+import { Ejemplo, Tasks, Users, Login } from "./Screens";
 import "./App.css";
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
 
         <Route path='/tasks' component={Tasks} />
         <Route path='/users' component={Users} />
+        <Route path='/login' component={Login} />
 
         <Route path='/' component={Ejemplo} />
       </Switch>
