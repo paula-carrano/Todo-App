@@ -22,9 +22,9 @@ const List = () => {
 
     const fetchTasks = () => {
         tasksApi.get().then((response => {
-            setPendiente(response.filter(t => t.estado == 'pendiente'))
-            setRealizada(response.filter(t => t.estado == 'realizada'))
-            setCancelada(response.filter(t => t.estado == 'cancelada'))
+            setPendiente(response.filter(t => t.estado === 'pendiente'))
+            setRealizada(response.filter(t => t.estado === 'realizada'))
+            setCancelada(response.filter(t => t.estado === 'cancelada'))
         }))
     }
 

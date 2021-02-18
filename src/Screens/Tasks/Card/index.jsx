@@ -1,5 +1,5 @@
 import { api } from '../../../utils/api'
-//import './tasks.css'
+
 
 const Card = ({ id, titulo, fecha, descripcion, asignada, estado, onTaskStatusChange }) => {
 
@@ -27,9 +27,18 @@ const Card = ({ id, titulo, fecha, descripcion, asignada, estado, onTaskStatusCh
     return (
         <div key={id} className='card border-dark mb-2' >
             <div className='card-header border-dark text-center' >
-                <button className='btn btn-outline-info btn-sm me-2' onClick={() => handleClick('pendiente')} >Pendiente</button>
-                <button className='btn btn-outline-success btn-sm me-2' onClick={() => handleClick('realizada')} >Realizada</button>
-                <button className='btn btn-outline-danger btn-sm' onClick={() => handleClick('cancelada')} >Cancelada</button>
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </nav>
+                <div className="collapse" id="navbarToggleExternalContent">
+                    <button className='btn btn-outline-info btn-sm me-2' onClick={() => handleClick('pendiente')} >Pendiente</button>
+                    <button className='btn btn-outline-success btn-sm me-2' onClick={() => handleClick('realizada')} >Realizada</button>
+                    <button className='btn btn-outline-danger btn-sm' onClick={() => handleClick('cancelada')} >Cancelada</button>
+                </div>
             </div>
             <div className={`card-body p-3 ${colorearCard()}`}>
                 <h5 className="card-title mt-2 mb-2">Titulo: {titulo}</h5>
