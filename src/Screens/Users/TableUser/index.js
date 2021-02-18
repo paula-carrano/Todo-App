@@ -1,7 +1,7 @@
 import React from 'react';
 import { PencilFill, TrashFill } from 'react-bootstrap-icons'
 
-const TableUser = ({ dataUser }) => {
+const TableUser = ({ dataUser, handleClick }) => {
 
     return (
         <div className="table-responsive">
@@ -12,19 +12,19 @@ const TableUser = ({ dataUser }) => {
                         <th scope="col">Apellido</th>
                         <th scope="col">Correo electónico</th>
                         <th scope="col">Contraseña</th>
-                        <th colspan="2">Actions</th>
+                        <th colSpan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {dataUser.map(({ nombre, apellido, email, password }) => {
+                    {dataUser.map(({ id, nombre, apellido, email, password }) => {
                         return (
-                            <tr className="text-center">
+                            <tr key={id} className="text-center">
                                 <td>{nombre}</td>
                                 <td>{apellido} </td>
                                 <td>{email} </td>
                                 <td>{password} </td>
                                 <td><button className="btn btn-info"><PencilFill /></button></td>
-                                <td><button className="btn btn-danger"><TrashFill /></button></td>
+                                <td><button className="btn btn-danger" onClick={() => handleClick(id)}><TrashFill /></button></td>
                             </tr>
                         )
                     }

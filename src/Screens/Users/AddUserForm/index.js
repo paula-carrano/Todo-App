@@ -34,6 +34,7 @@ const AddUserForm = () => {
         }
 
         api.post('/users.json', {
+            id: user.id,
             nombre: user.nombre,
             apellido: user.apellido,
             email: user.email,

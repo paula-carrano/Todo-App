@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { Layout, Main } from '../../../components'
 import { TableUser } from '../TableUser'
+import { api } from '../../../utils'
 import { UserApi } from './api'
 
 const ListUser = () => {
@@ -26,13 +27,17 @@ const ListUser = () => {
         setUsers()
     }, []);
 
+    const deleteUser = (id) => {
+        api.delete(`/users/${id}.json`)
+
+    }
 
     return (
         <Layout>
             <Main title="Usuarios" handleClick={redirectAddUserForm}>
                 <div className="container">
                     <div className="row">
-                        <TableUser dataUser={dataUser} />
+                        <TableUser dataUser={dataUser} handleClick={deleteUser} />
                     </div>
                 </div>
             </Main>
