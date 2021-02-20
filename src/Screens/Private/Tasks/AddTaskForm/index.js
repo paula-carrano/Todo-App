@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Layout, Main } from '../../../components'
+import { Layout, Main } from '../../../../components'
 import './add.css'
-import { api } from '../../../utils'
+import { api } from '../../../../utils'
 
 
 const AddTaskForm = () => {

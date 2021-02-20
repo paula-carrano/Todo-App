@@ -1,20 +1,12 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Ejemplo, Tasks, Users, Login } from "./Screens";
 import "./App.css";
+import { Public } from './Screens/Public'
+import { Private } from './Screens/Private'
+
 
 const App = () => {
-  return (
-    <Router>
-      <Switch>
+  const isAuthenticity = true;
 
-        <Route path='/tasks' component={Tasks} />
-        <Route path='/users' component={Users} />
-        <Route path='/login' component={Login} />
-
-        <Route path='/' component={Ejemplo} />
-      </Switch>
-    </Router>
-  );
+  return (isAuthenticity ? <Private /> : <Public />)
 };
 
 export default App;

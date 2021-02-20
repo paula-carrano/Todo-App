@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { PencilFill, TrashFill } from 'react-bootstrap-icons'
 
 const TableUser = ({ dataUser, handleClickDelete }) => {
@@ -25,7 +26,7 @@ const TableUser = ({ dataUser, handleClickDelete }) => {
                                 <td>{apellido} </td>
                                 <td>{email} </td>
                                 <td>{password} </td>
-                                <td><button className="btn btn-info"><PencilFill /></button></td>
+                                <td><Link to={`/users/update/${id}`} className="btn btn-info" ><PencilFill /></Link></td>
                                 <td><button className="btn btn-danger" onClick={() => handleClickDelete(id)}><TrashFill /></button></td>
                             </tr>
                         )

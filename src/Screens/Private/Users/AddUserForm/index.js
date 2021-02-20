@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Layout, Main } from '../../../components'
-import { api } from '../../../utils'
+import { Layout, Main } from '../../../../components'
+import { api } from '../../../../utils'
 
 const AddUserForm = () => {
     let history = useHistory();
@@ -53,7 +53,7 @@ const AddUserForm = () => {
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
-                            <form className='form-agregar-tarea mt-5' onSubmit={enviarDatos}>
+                            <form className='form-agregar-tarea mt-5 mt-5 p-4 shadow' onSubmit={enviarDatos}>
                                 <div className="form-group ">
                                     <label htmlFor="nombre"><b>Nombre</b></label>
                                     <input type="text" name="nombre" className="form-control" id="nombre" placeholder="Ingrese su nombre" onChange={(event) => handleInputChange(event)} />
@@ -72,7 +72,7 @@ const AddUserForm = () => {
                                 </div>
                                 <div className='row'>
                                     <div className='col'>
-                                        <button className='btn btn-primary btn-agregar-tarea mt-5 btn-agregar-tarea' type='submit'>Agregar</button>
+                                        <button className='btn btn-primary btn-agregar-tarea mt-5 btn-agregar-tarea mt-3' type='submit'>Agregar</button>
                                     </div>
                                 </div>
                             </form>

@@ -1,5 +1,5 @@
 export { Ejemplo } from "./Ejemplo";
-export { Tasks } from "./Tasks";
-export { Users } from './Users'
-export { Login } from './Login'
+export { Tasks } from "./Private/Tasks";
+export { Users } from './Private/Users';
+export { Login } from './Public/Login';
 

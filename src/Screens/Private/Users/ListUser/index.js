@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
-import { Layout, Main } from '../../../components'
-import { TableUser } from '../TableUser'
-import { api } from '../../../utils'
+import { Layout, Main } from '../../../../components'
+import { TableUser } from '../../../../components/TableUser'
+import { api } from '../../../../utils'
 import { UserApi } from './api'
 
 const ListUser = () => {
@@ -29,9 +29,18 @@ const ListUser = () => {
     }, []);
 
     //BTN DELETE
-    const deleteUser = (id) => {
-        api.delete(`/users/${id}.json`)
-            .then(setUsers())
+    const deleteUser = async (id) => {
+        try {
+            await api.delete(`/users/${id}.json`)
+            setUsers()
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    //BTN EDIT 
+    const editUser = (id) => {
+        console.log(id)
     }
 
     return (
@@ -39,7 +48,7 @@ const ListUser = () => {
             <Main title="Usuarios" handleClick={redirectAddUserForm}>
                 <div className="container">
                     <div className="row">
-                        <TableUser dataUser={dataUser} handleClickDelete={deleteUser} />
+                        <TableUser dataUser={dataUser} handleClickDelete={deleteUser} handleClickEdit={editUser} />
                     </div>
                 </div>
             </Main>

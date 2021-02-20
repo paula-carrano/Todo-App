@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AddTaskForm } from './AddTaskForm'
 import { List } from './List'
 
-const Tasks = ({ match }) => {
-    const { path } = match
+const Tasks = () => {
+
     return (
         <Router>
             <Switch>
-                <Route path={`${path}/add`} component={AddTaskForm} />
-                <Route path={`${path}/list`} component={List} />
+                <Route path='/tasks/add' component={AddTaskForm} />
+                <Route path='/tasks/list' component={List} />
             </Switch>
         </Router>
     );
