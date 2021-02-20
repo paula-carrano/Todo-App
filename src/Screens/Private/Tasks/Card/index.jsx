@@ -1,4 +1,4 @@
-import { api } from '../../utils'
+import { api } from '../../../../utils/api'
 
 
 const Card = ({ id, titulo, fecha, descripcion, asignada, estado, onTaskStatusChange }) => {
@@ -27,8 +27,8 @@ const Card = ({ id, titulo, fecha, descripcion, asignada, estado, onTaskStatusCh
     return (
         <div key={id} className='card border-dark mb-2' >
             <div className='card-header border-dark text-center' >
-                <nav class="navbar navbar-light bg-light">
-                    <div class="container-fluid">
+                <nav className="navbar navbar-light bg-light">
+                    <div className="container-fluid">
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

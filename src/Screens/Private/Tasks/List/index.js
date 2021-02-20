@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { Layout, Main } from '../../../../components'
 import './tasks.css'
 import { tasksApi } from './api'
-import { Card } from '../../../../components'
+import { Card } from '../Card'
 
 
 const List = () => {

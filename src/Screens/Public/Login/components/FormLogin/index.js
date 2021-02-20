@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../../../../hooks/useAuth'
 
 const FormLogin = () => {
     const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
+    const [password, setPassword] = useState('')
+    const { login } = useAuth()
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        login(email, password)
+        alert('logueado')
+        setEmail('')
+        setPassword('')
+    }
     return (
         <div className='container'>
             <div className='row justify-content-center'>
@@ -18,26 +27,28 @@ const FormLogin = () => {
                                 <p className='text-muted mb-4'>Ingrese su correo electrónico y contraseña para acceder al panel de administración.</p>
                             </div>
 
-                            <form action="#">
+                            <form onSubmit={handleSubmit}>
 
                                 <div className='form-group'>
                                     <label htmlFor='emailaddress'>Correo electrónico</label>
                                     <input
-                                        onChange={(e) => { setEmail(e.target.value) }}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         className='form-control'
                                         type='email'
                                         id='emailaddress'
                                         required=''
+                                        value={email}
                                         placeholder='Ingrese su correo electrónico' />
                                 </div>
 
                                 <div className='form-group'>
                                     <label htmlFor='password'>Contraseña</label>
                                     <input
-                                        onChange={(e) => { setPass(e.target.value) }}
+                                        onChange={(e) => setPassword(e.target.value)}
                                         type='password'
                                         id='password'
                                         className='form-control'
+                                        value={password}
                                         placeholder='Ingrese su contraseña' />
                                 </div>
 
@@ -53,7 +64,7 @@ const FormLogin = () => {
                                 </div>
                                 <div className='row mt-3'>
                                     <div className='col-12 text-center'>
-                                        <p className='text-muted'>No tiene una cuenta? <Link to='/signup' className='text-muted ml-1'><b>Registrarse</b></Link ></p>
+                                        <p className='text-muted'>No tiene una cuenta? <Link to='/signup' className='text-muted ml-1'><b>Registrarse</b></Link></p>
                                     </div>
                                 </div>
                             </form>

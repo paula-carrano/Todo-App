@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Main, FormLogin } from '../../../components'
+import { Layout, Main } from '../../../components'
+import { FormLogin } from './components';
 
 const Login = () => {
     return (

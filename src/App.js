@@ -1,12 +1,14 @@
 import "./App.css";
 import { Public } from './Screens/Public'
 import { Private } from './Screens/Private'
-
+import { useAuth } from './hooks'
 
 const App = () => {
-  const isAuthenticity = true;
+  const { isAuthenticated } = useAuth()
 
-  return (isAuthenticity ? <Private /> : <Public />)
+  console.log(isAuthenticated)
+
+  return (isAuthenticated ? <Private /> : <Public />)
 };
 
 export default App;

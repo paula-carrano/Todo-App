@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../../../../hooks/useAuth'
 
 const FormSignUp = () => {
-    const [name, setName] = useState('')
+
+    const [nombreCompleto, setNombreCompleto] = useState('')
     const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
+    const [password, setPassword] = useState('')
+
+    const { register } = useAuth()
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        register(email, password, nombreCompleto)
+        alert('registro exitoso')
+        setNombreCompleto('')
+        setEmail('')
+        setPassword('')
+    }
 
     return (
         <div className='container'>
@@ -18,36 +31,46 @@ const FormSignUp = () => {
                                 <h4 className='text-dark-50 text-center mt-0 font-weight-bold'>Registro gratuito</h4>
                                 <p className='text-muted mb-4'>No posee una cuenta? Cree su cuenta, le tomará menos de un minuto.</p>
                             </div>
-                            <form action="#">
+                            <form action="#" onSubmit={handleSubmit}>
                                 <div className='form-group'>
                                     <label htmlFor='fullname'>Nombre completo</label>
                                     <input
-                                        onChange={(e) => { setName(e.target.value) }}
+                                        onChange={(e) => setNombreCompleto(e.target.value)}
                                         className='form-control'
-                                        type='text' id='nombre-completo'
+                                        type='text' id='nombreCompleto'
                                         required=''
+                                        value={nombreCompleto}
                                         placeholder='Ingrese su nombre completo' />
                                 </div>
                                 <div className='form-group'>
                                     <label htmlFor='emailaddress'>Correo electrónico</label>
                                     <input
-                                        onChange={(e) => { setEmail(e.target.value) }}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         className='form-control'
                                         type='email'
                                         id='emailaddress'
                                         required=''
+                                        value={email}
                                         placeholder='Ingrese su correo electrónico' />
                                 </div>
                                 <div className='form-group'>
                                     <label htmlFor='password'>Contraseña</label>
                                     <input
-                                        onChange={(e) => { setPass(e.target.value) }}
+                                        onChange={(e) => setPassword(e.target.value)}
                                         type='password'
                                         id='password'
                                         className='form-control'
+                                        value={password}
                                         placeholder='Ingrese su contraseña' />
                                 </div>
-
+                                <div className='form-group'>
+                                    <label htmlFor='password'>Repita su contraseña</label>
+                                    <input
+                                        type='password'
+                                        id='confirmpass'
+                                        className='form-control'
+                                        placeholder='Repita su contraseña' />
+                                </div>
                                 <div className='form-group mb-3'>
                                     <div className='custom-control custom-checkbox'>
                                         <input
