@@ -1,34 +1,39 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../../../../hooks/useAuth'
+import { Toast } from '../../../../../components'
 
 const FormLogin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { login } = useAuth()
+    const { login, authMsgError, isAuthenticated } = useAuth()
 
-    const handleSubmit = (e) => {
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         login(email, password)
-        alert('logueado')
         setEmail('')
         setPassword('')
     }
+
     return (
         <div className='container'>
             <div className='row justify-content-center'>
                 <div className='col-lg-5'>
                     <div className='card-login mt-5 shadow'>
                         <div className='card-header pt-4 pb-4 text-center bg-dark'>
+                            {
+                                isAuthenticated ? <Toast bgColor="bg-info" toastTitle="Logueo exitoso" toastMsg="Bienvenido" /> : (<span></span>)
+
+                            }
                         </div>
                         <div className='card-body p-4'>
                             <div className='text-center w-75 m-auto'>
                                 <h4 className='text-dark-50 text-center mt-0 font-weight-bold'>Ingresar</h4>
                                 <p className='text-muted mb-4'>Ingrese su correo electrónico y contraseña para acceder al panel de administración.</p>
                             </div>
-
                             <form onSubmit={handleSubmit}>
-
                                 <div className='form-group'>
                                     <label htmlFor='emailaddress'>Correo electrónico</label>
                                     <input
@@ -58,7 +63,9 @@ const FormLogin = () => {
                                         <label className='custom-control-label' htmlFor='checkbox-signin'>Recordarme</label>
                                     </div>
                                 </div>
-
+                                {
+                                    authMsgError != null ? (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>) : (<span></span>)
+                                }
                                 <div className='form-group mb-0 text-center'>
                                     <button className='btn btn-primary' type='submit'>Ingresar</button>
                                 </div>
@@ -70,9 +77,6 @@ const FormLogin = () => {
                             </form>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>

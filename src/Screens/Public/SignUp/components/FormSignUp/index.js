@@ -7,13 +7,13 @@ const FormSignUp = () => {
     const [nombreCompleto, setNombreCompleto] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmpass, setConfirmPass] = useState('')
 
     const { register } = useAuth()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        register(email, password, nombreCompleto)
-        alert('registro exitoso')
+        register(email, password, nombreCompleto, confirmpass)
         setNombreCompleto('')
         setEmail('')
         setPassword('')
@@ -64,13 +64,18 @@ const FormSignUp = () => {
                                         placeholder='Ingrese su contraseña' />
                                 </div>
                                 <div className='form-group'>
-                                    <label htmlFor='password'>Repita su contraseña</label>
+                                    <label htmlFor='confirmpass'>Repita su contraseña</label>
                                     <input
+                                        onChange={(e) => setConfirmPass(e.target.value)}
                                         type='password'
                                         id='confirmpass'
                                         className='form-control'
+                                        value={confirmpass}
                                         placeholder='Repita su contraseña' />
                                 </div>
+                                {
+                                    (password !== confirmpass) ? <div className="alert alert-danger p-2 m-2" role="alert">Verifique la contraseña</div> : <span></span>
+                                }
                                 <div className='form-group mb-3'>
                                     <div className='custom-control custom-checkbox'>
                                         <input

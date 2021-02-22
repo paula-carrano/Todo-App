@@ -2,6 +2,7 @@ import "./App.css";
 import { Public } from './Screens/Public'
 import { Private } from './Screens/Private'
 import { useAuth } from './hooks'
+import { useEffect } from "react";
 
 const App = () => {
   const { isAuthenticated } = useAuth()
