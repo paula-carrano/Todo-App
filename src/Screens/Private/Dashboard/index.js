@@ -4,7 +4,7 @@ import { Layout, Main } from '../../../components';
 const Dashboard = () => {
     return (
         <Layout>
-            <Main>
+            <Main showAddButton>
                 <h2>Dashboard</h2>
             </Main>
         </Layout>

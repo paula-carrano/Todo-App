@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useHistory } from "react-router-dom"
 import { firebaseAuth } from '../utils/firebase-config'
 
 
@@ -9,12 +10,16 @@ const useAuth = () => {
     const [authMsgError, setAuthMsgError] = useState(null)
 
 
+    const history = useHistory()
+
 
     const login = (email, password) => {
         firebaseAuth.auth().signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 setUser(user)
                 setIsAuthenticated(true)
+                localStorage.setItem('userToken', user.refreshToken)
+                history.push('/dashboard')
             })
             .catch(e => {
                 switch (e.code) {
@@ -46,8 +51,23 @@ const useAuth = () => {
     }
 
     const logout = () => {
+        firebaseAuth.auth().signOut()
+            .then(() => {
+                alert('te has deslogueado exitosamente')
+            }).catch((error) => {
+                console.error(error)
+            });
 
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem('userToken');
+
+        console.log(token)
+        if (token && token !== '') {
+            setIsAuthenticated(true)
+        }
+    }, []);
 
     return { login, register, logout, user, isAuthenticated, authMsgError }
 }

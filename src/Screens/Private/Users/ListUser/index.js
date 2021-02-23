@@ -29,11 +29,11 @@ const ListUser = () => {
     }, []);
 
     //BTN DELETE
+
     const deleteUser = (id) => {
         api.delete(`/users/${id}.json`)
             .then(() => setUsers())
     }
-
 
     return (
         <Layout>

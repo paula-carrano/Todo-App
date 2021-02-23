@@ -1,14 +1,20 @@
 import React from "react";
 import { Search } from "react-bootstrap-icons";
-import { Bell, ArrowLeft } from "react-bootstrap-icons";
-import { Grid3x3GapFill } from "react-bootstrap-icons";
-import { Gear } from "react-bootstrap-icons";
+import { Bell, ArrowLeft, Grid3x3GapFill, Gear, BoxArrowRight } from "react-bootstrap-icons";
 import { useHistory } from "react-router-dom";
 import avatar from "../../../../../../assets/img/avatar-1.jpg";
 import menuItems from "./data";
+import { useAuth } from '../../../../../../hooks'
 
 const NavBar = () => {
   const { goBack } = useHistory();
+
+  const { logout } = useAuth()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    logout()
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -119,9 +125,8 @@ const NavBar = () => {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
+                  <a className="dropdown-item" onSubmit={handleSubmit}>
+                    <BoxArrowRight /> logout</a>
                 </li>
               </ul>
             </li>
