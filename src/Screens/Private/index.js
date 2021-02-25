@@ -10,7 +10,7 @@ const Private = () => {
             <Switch>
                 <Route path="/tasks" component={Tasks} />
                 <Route path="/users" component={Users} />
-                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/" component={Dashboard} />
             </Switch>
         </Router>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Layout, Main } from '../../../../components'
-import { api } from '../../../../utils'
+import { Layout, Main } from 'components'
+import { api } from 'utils'
 
 const AddUserForm = () => {
     let history = useHistory();

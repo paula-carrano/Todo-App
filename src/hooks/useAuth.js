@@ -19,7 +19,7 @@ const useAuth = () => {
                 setUser(user)
                 setIsAuthenticated(true)
                 localStorage.setItem('userToken', user.refreshToken)
-                history.push('/dashboard')
+                history.go(0)
             })
             .catch(e => {
                 switch (e.code) {
