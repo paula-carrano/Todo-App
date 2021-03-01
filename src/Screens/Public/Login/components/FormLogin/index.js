@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useAuth } from 'hooks/useAuth'
-import { Toast } from 'components'
+
 
 const FormLogin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { login, authMsgError, isAuthenticated } = useAuth()
-
+    const { login, authMsgError } = useAuth()
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         login(email, password)
-        setEmail('')
-        setPassword('')
     }
 
     return (
@@ -23,10 +20,6 @@ const FormLogin = () => {
                 <div className='col-lg-5'>
                     <div className='card-login mt-5 shadow'>
                         <div className='card-header pt-4 pb-4 text-center bg-dark'>
-                            {
-                                isAuthenticated ? <Toast bgColor="bg-info" toastTitle="Logueo exitoso" toastMsg="Bienvenido" /> : (<span></span>)
-
-                            }
                         </div>
                         <div className='card-body p-4'>
                             <div className='text-center w-75 m-auto'>

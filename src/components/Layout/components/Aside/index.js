@@ -20,6 +20,16 @@ const Aside = () => {
             >
               <i className="bi bi-person"></i> Users
             </button>
+            <Link to={{
+              pathname: "/users/add",
+              search: "para1=value1&param2=value2",
+              hash: "#contact",
+              state: {
+                userId: 123
+              }
+            }}
+            >Users
+            </Link>
           </div>
           <div
             id="collapseUsers"

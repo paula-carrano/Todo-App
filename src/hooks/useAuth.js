@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { AuthContext } from "contexts/AuthProvider"
+import { useState, useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { firebaseAuth } from '../utils/firebase-config'
 
@@ -6,9 +7,9 @@ import { firebaseAuth } from '../utils/firebase-config'
 const useAuth = () => {
 
     const [user, setUser] = useState({})
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [authMsgError, setAuthMsgError] = useState(null)
 
+    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
 
     const history = useHistory()
 
@@ -29,6 +30,7 @@ const useAuth = () => {
                         break
                     case "auth/wrong-password": setAuthMsgError('La contraseña es incorrecta o el usuario no está registrado')
                         break
+                    default: setAuthMsgError("La web tiene un incoveniente, intente más tarde")
                 }
             })
     }
@@ -46,6 +48,8 @@ const useAuth = () => {
                         break
                     case "auth/weak-password": setAuthMsgError('La contraseña debe tener 6 caracteres o más')
                         break
+                    default: setAuthMsgError("La web tiene un incoveniente, intente más tarde")
+
                 }
             })
     }
@@ -53,7 +57,9 @@ const useAuth = () => {
     const logout = () => {
         firebaseAuth.auth().signOut()
             .then(() => {
-                alert('te has deslogueado exitosamente')
+                localStorage.removeItem('userToken')
+                setIsAuthenticated(false)
+                history.go(0)
             }).catch((error) => {
                 console.error(error)
             });
@@ -62,11 +68,19 @@ const useAuth = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('userToken');
-
-        console.log(token)
         if (token && token !== '') {
             setIsAuthenticated(true)
         }
+    }, [setIsAuthenticated]);
+
+
+    useEffect(() => {
+        firebaseAuth.auth().onAuthStateChanged((user) => {
+            console.log(user)
+            // if (user.refreshToken !== null) {
+            //     logout()
+            // }
+        })
     }, []);
 
     return { login, register, logout, user, isAuthenticated, authMsgError }
