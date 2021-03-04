@@ -17,8 +17,10 @@ const Avatar = () => {
 
     const doUpload = (e) => {
         e.preventDefault()
+
         const ref = storage.ref(`images/${fileName}`)
         ref.put(fileObject)
+        user.updateProfile({ photoURL: `images/${fileName}` }) //si o si url de firebase
         console.log("exito")
     }
 
