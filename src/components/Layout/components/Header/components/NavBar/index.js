@@ -1,15 +1,17 @@
-import React from "react";
-import { Search } from "react-bootstrap-icons";
-import { Bell, ArrowLeft, Grid3x3GapFill, Gear, BoxArrowRight } from "react-bootstrap-icons";
-import { useHistory } from "react-router-dom";
-import avatar from "../../../../../../assets/img/avatar-1.jpg";
+import React, { useContext } from "react";
+import { Bell, ArrowLeft, Grid3x3GapFill, Gear, BoxArrowRight, Search } from "react-bootstrap-icons";
+import { useHistory, Link } from "react-router-dom";
+
 import menuItems from "./data";
 import { useAuth } from 'hooks'
+import { AuthContext } from "../../../../../../contexts/AuthProvider"
+
 
 const NavBar = () => {
   const { goBack } = useHistory();
+  const { logout } = useAuth();
+  const { user } = useContext(AuthContext)
 
-  const { logout } = useAuth()
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -98,18 +100,17 @@ const NavBar = () => {
                 aria-expanded="false"
               >
                 <img
-                  src={avatar}
+                  src={user.photoURL}
                   alt="user-avatar"
                   width="32"
                   className="rounded-circle ms-1 me-2"
                 />
-                Dominic Keller
+                {console.log(user.photoURL)}
+                {user.displayName}
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
+                  <Link to="/profile" className="dropdown-item">Profile</Link>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">

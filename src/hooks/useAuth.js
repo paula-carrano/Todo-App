@@ -6,10 +6,10 @@ import { firebaseAuth } from '../utils/firebase-config'
 
 const useAuth = () => {
 
-    const [user, setUser] = useState({})
+
     const [authMsgError, setAuthMsgError] = useState(null)
 
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
+    const { isAuthenticated, setIsAuthenticated, user, setUser } = useContext(AuthContext)
 
     const history = useHistory()
 
@@ -39,8 +39,10 @@ const useAuth = () => {
 
         firebaseAuth.auth().createUserWithEmailAndPassword(email, password)
             .then(({ user }) => {
-                setUser(user)
-                user.updateProfile({ displayName: nombreCompleto })
+                setUser(user);
+                user.updateProfile({ displayName: nombreCompleto });
+                user.updateProfile({ photoURL: "http://placeimg.com/100/100/people" })
+                history.push("/")
             })
             .catch(e => {
                 switch (e.code) {
@@ -67,21 +69,15 @@ const useAuth = () => {
     }
 
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
-        if (token && token !== '') {
-            setIsAuthenticated(true)
-        }
-    }, [setIsAuthenticated]);
-
-
-    useEffect(() => {
         firebaseAuth.auth().onAuthStateChanged((user) => {
-            console.log(user)
-            // if (user.refreshToken !== null) {
-            //     logout()
-            // }
+            const token = localStorage.getItem('userToken');
+            console.log(token)
+            if (token && token === user.refreshToken) {
+                setIsAuthenticated(true)
+                setUser(user)
+            }
         })
-    }, []);
+    }, [setIsAuthenticated, setUser]);
 
     return { login, register, logout, user, isAuthenticated, authMsgError }
 }

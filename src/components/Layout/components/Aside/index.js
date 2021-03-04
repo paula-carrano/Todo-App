@@ -1,4 +1,5 @@
 import React from "react";
+import { Person, CardList, Sliders } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { Logo } from "./components";
 import "./styles.css";
@@ -18,9 +19,9 @@ const Aside = () => {
               aria-expanded="false"
               aria-controls="collapseUsers"
             >
-              <i className="bi bi-person"></i> Users
+              <i><Person /></i> Users
             </button>
-            <Link to={{
+            {/* <Link to={{
               pathname: "/users/add",
               search: "para1=value1&param2=value2",
               hash: "#contact",
@@ -29,7 +30,7 @@ const Aside = () => {
               }
             }}
             >Users
-            </Link>
+            </Link> */}
           </div>
           <div
             id="collapseUsers"
@@ -53,7 +54,7 @@ const Aside = () => {
               aria-expanded="false"
               aria-controls="collapseTasks"
             >
-              <i className="bi bi-card-list"></i> Task
+              <i> <CardList /></i> Task
             </button>
           </div>
           <div
@@ -78,7 +79,7 @@ const Aside = () => {
               aria-expanded="false"
               aria-controls="collapseSettings"
             >
-              <i className="bi bi-sliders"></i> Settigns
+              <i><Sliders /></i> Settigns
             </button>
           </div>
           <div

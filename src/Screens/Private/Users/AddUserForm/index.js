@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom'
 import { Layout, Main } from 'components'
 import { api } from 'utils'
 
-const AddUserForm = ({ location }) => {
+const AddUserForm = () => {
     let history = useHistory();
-    console.log(location)
+
 
     const [user, setUser] = useState({
         nombre: '',
