@@ -51,17 +51,24 @@ const AddUserForm = () => {
     return (
         <Layout >
             <Main title="Agregar usuario " showAddButton>
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col'>
-                            <form className='form-agregar-tarea mt-5 mt-5 p-4 shadow' onSubmit={enviarDatos}>
-                                <div className="form-group ">
-                                    <label htmlFor="nombre"><b>Nombre</b></label>
-                                    <input type="text" name="nombre" className="form-control" id="nombre" placeholder="Ingrese su nombre" onChange={(event) => handleInputChange(event)} />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="apellido"><b>Apellido</b></label>
-                                    <input type="text" name="apellido" className="form-control" id="apellido" placeholder="Ingrese su apellido" onChange={(event) => handleInputChange(event)} />
+                <div className="container d-flex flex-column">
+                    <div className='row justify-content-center'>
+                        <div className='col-md-10'>
+                            <form className='form-agregar-tarea px-4 shadow bg bg-light' onSubmit={enviarDatos}>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group ">
+                                            <label htmlFor="nombre"><b>Nombre</b></label>
+                                            <input type="text" name="nombre" className="form-control" id="nombre" placeholder="Ingrese su nombre" onChange={(event) => handleInputChange(event)} />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label htmlFor="apellido"><b>Apellido</b></label>
+                                            <input type="text" name="apellido" className="form-control" id="apellido" placeholder="Ingrese su apellido" onChange={(event) => handleInputChange(event)} />
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="email"><b>Email</b></label>
@@ -71,23 +78,20 @@ const AddUserForm = () => {
                                     <label htmlFor="password"><b>Contraseña</b></label>
                                     <input type="password" name="password" className="form-control" id="password" placeholder="Ingrese su contraseña" onChange={(event) => handleInputChange(event)} />
                                 </div>
-                                <div className='row'>
-                                    <div className='col'>
-                                        <button className='btn btn-primary btn-agregar-tarea mt-5 btn-agregar-tarea mt-3' type='submit'>Agregar</button>
-                                    </div>
+                                <div className="mt-3">
+                                    {
+                                        error && (
+                                            <div className="alert alert-danger mt-2" role="alert">{error} </div>
+                                        )
+                                    }
+                                    <button className='btn btn-primary mb-3' type='submit'>Agregar</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                {
-                    error != null ? (
-                        <div className="alert alert-danger mt-2" role="alert">{error} </div>
-                    ) : (<div></div>)
-                }
             </Main>
         </Layout>
-
     )
 }
 

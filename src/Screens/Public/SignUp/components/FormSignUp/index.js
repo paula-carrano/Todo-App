@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useAuth } from 'hooks/useAuth'
+import { Logo } from 'components';
 
 const FormSignUp = () => {
 
@@ -9,7 +10,7 @@ const FormSignUp = () => {
     const [password, setPassword] = useState('')
     const [confirmpass, setConfirmPass] = useState('')
 
-    const { register } = useAuth()
+    const { register, authMsgError } = useAuth()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,9 +23,10 @@ const FormSignUp = () => {
     return (
         <div className='container'>
             <div className='row justify-content-center'>
-                <div className='col-lg-5'>
+                <div className='col-lg-5 bg bg-light'>
                     <div className='card-signup mt-5 shadow'>
                         <div className='card-header pt-4 pb-4 text-center bg-dark'>
+                            <Logo />
                         </div>
                         <div className='card-body p-4'>
                             <div className='text-center w-75 m-auto'>
@@ -73,19 +75,14 @@ const FormSignUp = () => {
                                         value={confirmpass}
                                         placeholder='Repita su contraseña' />
                                 </div>
-                                {
-                                    (password !== confirmpass) ? <div className="alert alert-danger p-2 m-2" role="alert">Verifique la contraseña</div> : <span></span>
-                                }
-                                <div className='form-group mb-3'>
-                                    <div className='custom-control custom-checkbox'>
-                                        <input
-                                            type='checkbox'
-                                            className='custom-control-input me-3'
-                                            id='checkbox-signin' />
-                                        <label className='custom-control-label' htmlFor='checkbox-signin'>Acepto términos y condiciones</label>
-                                    </div>
+                                <div>
+                                    {
+                                        (password !== confirmpass) ? <div className="alert alert-danger p-2 m-2" role="alert">Verifique la contraseña</div> : <span></span>
+                                    }
+                                    {
+                                        authMsgError && (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>)
+                                    }
                                 </div>
-
                                 <div className='form-group mb-0 text-center'>
                                     <button className='btn btn-primary' type='submit'>Registrarme</button>
                                 </div>
@@ -94,7 +91,6 @@ const FormSignUp = () => {
                                         <p className="text-muted">Ya tiene su cuenta? <Link to='/login' className='text-muted ml-1'><b>Ingresar</b></Link></p>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>

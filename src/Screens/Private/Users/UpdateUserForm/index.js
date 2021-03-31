@@ -61,7 +61,7 @@ const UpdateUserForm = () => {
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
-                            <form className='form-agregar-tarea mt-5 p-4 shadow' onSubmit={updateUser}>
+                            <form className='form-agregar-tarea p-4 shadow bg bg-light' onSubmit={updateUser}>
                                 <div className="form-group ">
                                     <label htmlFor="nombre"><b>Nombre</b></label>
                                     <input

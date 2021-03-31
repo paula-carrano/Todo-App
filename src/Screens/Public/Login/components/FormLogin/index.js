@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { useAuth } from 'hooks/useAuth'
-
+import { Logo } from '../../../../../components'
+import { useAuth } from '../../../../../hooks'
 
 const FormLogin = () => {
     const [email, setEmail] = useState('')
@@ -16,10 +16,11 @@ const FormLogin = () => {
 
     return (
         <div className='container'>
-            <div className='row justify-content-center'>
-                <div className='col-lg-5'>
+            <div className='row justify-content-center '>
+                <div className='col-lg-5 bg bg-light'>
                     <div className='card-login mt-5 shadow'>
-                        <div className='card-header pt-4 pb-4 text-center bg-dark'>
+                        <div className='card-header  pt-4 pb-4 text-center bg-dark'>
+                            <Logo />
                         </div>
                         <div className='card-body p-4'>
                             <div className='text-center w-75 m-auto'>
@@ -50,15 +51,12 @@ const FormLogin = () => {
                                         placeholder='Ingrese su contraseña' />
                                 </div>
 
-                                <div className='form-group mb-3'>
-                                    <div className='custom-control custom-checkbox'>
-                                        <input type='checkbox' className='custom-control-input me-3' id='checkbox-signin' />
-                                        <label className='custom-control-label' htmlFor='checkbox-signin'>Recordarme</label>
-                                    </div>
+                                <div className='mb-3'>
+                                    {
+                                        authMsgError && (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>)
+                                    }
                                 </div>
-                                {
-                                    authMsgError != null ? (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>) : (<span></span>)
-                                }
+
                                 <div className='form-group mb-0 text-center'>
                                     <button className='btn btn-primary' type='submit'>Ingresar</button>
                                 </div>

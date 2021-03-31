@@ -1,22 +1,23 @@
 import { AuthContext } from "contexts/AuthProvider"
 import { useState, useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom"
-import { firebaseAuth } from '../utils/firebase-config'
+import { firebaseAuth } from 'utils/firebase-config'
+
 
 
 const useAuth = () => {
 
 
-    const [authMsgError, setAuthMsgError] = useState(null)
+    const [authMsgError, setAuthMsgError] = useState('')
 
     const { isAuthenticated, setIsAuthenticated, user, setUser } = useContext(AuthContext)
 
     const history = useHistory()
 
-
     const login = (email, password) => {
         firebaseAuth.auth().signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
+
                 setUser(user)
                 setIsAuthenticated(true)
                 localStorage.setItem('userToken', user.refreshToken)
@@ -41,7 +42,7 @@ const useAuth = () => {
             .then(({ user }) => {
                 setUser(user);
                 user.updateProfile({ displayName: nombreCompleto });
-                user.updateProfile({ photoURL: "http://placeimg.com/100/100/people" })
+                user.updateProfile({ photoURL: "http://placeimg.com/100/100/people" });
                 history.push("/")
             })
             .catch(e => {
@@ -71,7 +72,7 @@ const useAuth = () => {
     useEffect(() => {
         firebaseAuth.auth().onAuthStateChanged((user) => {
             const token = localStorage.getItem('userToken');
-            console.log(token)
+            // console.log(token)
             if (token && token === user.refreshToken) {
                 setIsAuthenticated(true)
                 setUser(user)

@@ -5,7 +5,7 @@ import { PencilFill, TrashFill } from 'react-bootstrap-icons'
 const TableUser = ({ dataUser, handleClickDelete }) => {
 
     return (
-        <div className="table-responsive">
+        <div className="table-responsive bg bg-light">
             <table className="table table-hover">
                 <thead>
                     <tr className="text-center">

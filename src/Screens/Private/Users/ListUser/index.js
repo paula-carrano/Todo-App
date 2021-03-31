@@ -8,11 +8,7 @@ import { UserApi } from './api'
 const ListUser = () => {
 
     //REDIRECCIONO EL BTN
-    const history = useHistory();
-
-    const redirectAddUserForm = () => {
-        history.push("/users/add");
-    }
+    const { push } = useHistory();
 
     const [dataUser, setdataUser] = useState([])
 
@@ -37,7 +33,7 @@ const ListUser = () => {
 
     return (
         <Layout>
-            <Main title="Usuarios" handleClick={redirectAddUserForm}>
+            <Main title="Usuarios" handleClick={() => push("/users/add")}>
                 <div className="container">
                     <div className="row">
                         <TableUser dataUser={dataUser} handleClickDelete={deleteUser} />

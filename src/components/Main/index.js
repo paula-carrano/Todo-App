@@ -11,7 +11,7 @@ const Main = ({ children, title, showAddButton, handleClick }) => {
 
   return (
     <main className="main bg-light">
-      <Header title={title} showAddButton={showAddButton} value={""} handleClick={handleClick} />
+      <Header title={title} showAddButton={showAddButton} handleClick={handleClick} />
       {children}
     </main>
   )

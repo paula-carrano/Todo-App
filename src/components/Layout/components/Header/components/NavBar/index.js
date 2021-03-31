@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
-import { Bell, ArrowLeft, Grid3x3GapFill, Gear, BoxArrowRight, Search } from "react-bootstrap-icons";
 import { useHistory, Link } from "react-router-dom";
+import { Bell, ArrowLeft, Grid3x3GapFill, Gear, BoxArrowRight, Search } from "react-bootstrap-icons";
 
-import menuItems from "./data";
 import { useAuth } from 'hooks'
-import { AuthContext } from "../../../../../../contexts/AuthProvider"
+import { AuthContext } from "contexts/AuthProvider"
+
 
 
 const NavBar = () => {
   const { goBack } = useHistory();
   const { logout } = useAuth();
   const { user } = useContext(AuthContext)
-
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -30,13 +29,14 @@ const NavBar = () => {
                 <Search />
               </span>
               <input
+                name="search"
                 type="text"
                 className="form-control"
                 placeholder="Search..."
                 aria-label="Search"
                 aria-describedby="basic-addon1"
               />
-              <button className="btn btn-primary shadow" type="submit">
+              <button className="btn btn-primary shadow" type="button" >
                 Search
               </button>
             </div>
@@ -57,43 +57,37 @@ const NavBar = () => {
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
-                href="#"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                English
+                Language
               </a>
+
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                {menuItems.map(({ href, text, className }) => {
-                  return (
-                    <li key={text} className={`dropdown-item ${className}`}>
-                      <a href={href}>{text}</a>
-                    </li>
-                  );
-                })}
+                <li className="dropdown-item"> 🇪🇸 &nbsp; Spanish</li>
+                <li className="dropdown-item">🇬🇧 &nbsp;English</li>
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a className="nav-link active" aria-current="page" href="/">
                 <Bell />
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/">
                 <Grid3x3GapFill />
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/">
                 <Gear />
               </a>
             </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle d-flex align-items-center"
-                href="#"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -105,7 +99,6 @@ const NavBar = () => {
                   width="32"
                   className="rounded-circle ms-1 me-2"
                 />
-                {console.log(user.photoURL)}
                 {user.displayName}
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -113,15 +106,7 @@ const NavBar = () => {
                   <Link to="/profile" className="dropdown-item">Profile</Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" onClick={logout}>
+                  <a className="dropdown-item" onClick={logout} href="/">
                     <BoxArrowRight /> logout</a>
                 </li>
               </ul>
