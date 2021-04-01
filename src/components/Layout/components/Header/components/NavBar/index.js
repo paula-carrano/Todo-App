@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Bell, ArrowLeft, Grid3x3GapFill, Gear, BoxArrowRight, Search } from "react-bootstrap-icons";
 
 import { useAuth } from 'hooks'
 import { AuthContext } from "contexts/AuthProvider"
-
+import './styles.css'
 
 
 const NavBar = () => {
@@ -55,16 +55,14 @@ const NavBar = () => {
           </form>
           <ul className="navbar-nav mb-2 mb-lg-0 ms-auto align-items-center">
             <li className="nav-item dropdown">
-              <a
+              <button
                 className="nav-link dropdown-toggle"
                 id="navbarDropdown"
-                role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                href="/#"
               >
                 Language
-              </a>
+              </button>
 
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li className="dropdown-item"> 🇪🇸 &nbsp; Spanish</li>
@@ -72,28 +70,26 @@ const NavBar = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <button className="nav-link active" aria-current="page">
                 <Bell />
-              </a>
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <button className="nav-link">
                 <Grid3x3GapFill />
-              </a>
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <button className="nav-link">
                 <Gear />
-              </a>
+              </button>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <button
                 className="nav-link dropdown-toggle d-flex align-items-center"
                 id="navbarDropdown"
-                role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                href="/#"
               >
                 <img
                   src={user.photoURL}
@@ -102,14 +98,14 @@ const NavBar = () => {
                   className="rounded-circle ms-1 me-2"
                 />
                 {user.displayName}
-              </a>
+              </button>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <Link to="/profile" className="dropdown-item">Profile</Link>
+                  <p to="/profile" className="dropdown-item">Profile</p>
                 </li>
                 <li>
-                  <a className="dropdown-item" onClick={logout} href="/">
-                    <BoxArrowRight /> logout</a>
+                  <button className="dropdown-item" onClick={logout} >
+                    <BoxArrowRight /> logout</button>
                 </li>
               </ul>
             </li>
