@@ -61,6 +61,7 @@ const NavBar = () => {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                href="/#"
               >
                 Language
               </a>
@@ -92,6 +93,7 @@ const NavBar = () => {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                href="/#"
               >
                 <img
                   src={user.photoURL}

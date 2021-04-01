@@ -41,7 +41,7 @@ const UpdateUserForm = () => {
 
     useEffect(() => {
         getDataUser()
-    }, []);
+    });
 
     //EDITO LOS DATOS DEL USUARIO
     const updateUser = async (e) => {
