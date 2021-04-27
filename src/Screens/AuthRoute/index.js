@@ -9,10 +9,7 @@ const AuthRoute = () => {
     const { isAuthenticated } = useContext(AuthContext)
 
     return (
-        <div>
-            { isAuthenticated ? <Private /> : <Public />
-            }
-        </div>
+        isAuthenticated ? <Private /> : <Public />
     );
 }
 
